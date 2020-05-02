@@ -26,8 +26,10 @@ mongoose
 
 //routes
 const authorRoutes = require('./api/routers/author');
+const userRoutes = require('./api/routers/user');
 
-app.use('/api/author', authorRoutes)
+app.use('/api/author', authorRoutes);
+app.use('/api/user', userRoutes)
 app.use((req, res, next) => {
   res.status(200).json({ message: "Hello World!!!" })
 });

@@ -16,7 +16,7 @@ const saveUser = (body) => (
             let userInfo = new User({
                 email: body.email,
                 password: body.password,
-                passwordRef: body.passwordRef,
+                passwordRef: body.password,
                 name: body.name
             })
             User.create(userInfo)
@@ -26,8 +26,19 @@ const saveUser = (body) => (
     })
 )
 
+const singIn = (body) => (
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            User.findOne({ email: body.email })
+                .then(userObj => resolve(userObj))
+                .catch(err => reject(err))
+        }, 100)
+    })
+)
+
 const userService = {
     findUser: findUser,
-    saveUser: saveUser
+    saveUser: saveUser,
+    singIn: singIn
 }
 module.exports = userService;

@@ -9,5 +9,12 @@ const userController = require('../controllers/user');
 //ID 1
 router.post('/create', userController.createUser);
 
+//@route /api/user
+//@desc logIn users
+//access Private
+//ID 2
+router.post('/singIn', userController.singIn);
+
+
 
 module.exports = router;

@@ -16,7 +16,22 @@ const createUser = async (req, res, next) => {
         return res.status(404).json({ message: `${error}` })
     }
 }
+
+const singIn = async (req, res, next) => {
+    try {
+        const singInObj = await userService.singIn(req.body);
+        if (singInObj) {
+            return res.status(200).json({ success: 1, data: singInObj })
+        } else {
+            return res.status(200).json({ success: 0, message: `Wrong Credencial` })
+        }
+    } catch (error) {
+        return res.status(404).json({ message: `${error}` })
+    }
+}
+
 const userController = {
-    createUser: createUser
+    createUser: createUser,
+    singIn: singIn
 }
 module.exports = userController
